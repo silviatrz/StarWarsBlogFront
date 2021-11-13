@@ -9,42 +9,34 @@ const Item = () => {
 			{store.character ? (
 				<>
 					<div className="row">
-						<img className="col-4 offset-2  bg-dark" style={{ height: "300px" }} />
+						<img
+							className="col-4 offset-2"
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1280px-Star_Wars_Logo.svg.png"
+							style={{ height: "300px" }}
+						/>
 						<div className="col-4 offset-2">
-							<h2>{store.character.name ? store.character.name : "Cargando"}</h2>
-							<p>{store.character.description ? store.character.description : "Cargando"}</p>
+							<h2 className="text-light">{store.character.properties.name}</h2>
+							<p className="text-light">{store.character.description}</p>
 						</div>
 					</div>
 					<hr className="text-danger" style={{ height: "3px" }} />
 					<div className="row text-danger">
-						{/*<div className="col-2">
-							<h5>Name</h5>
-							<p>{store.character.name ? store.character.name : "Cargando"}</p>
-						</div>
-						<div className="col-2">
-							<h5>Birth Year</h5>
-							<p>{store.character.birth_year ? store.character.birth_year : "Cargando"}</p>
-						</div>
-						<div className="col-2">
-							<h5>Name</h5>
-							<p>Luke</p>
-						</div>
-						<div className="col-2">
-							<h5>Name</h5>
-							<p>Luke</p>
-						</div>
-						<div className="col-2">
-							<h5>Name</h5>
-							<p>Luke</p>
-						</div>
-						<div className="col-2">
-							<h5>Name</h5>
-							<p>Luke</p>
-			</div>*/}
-						{Object.keys(store.character).map((item, index) => {
-							let value = store.character[item];
+						{Object.keys(store.character.properties).map((item, index) => {
+							let value = store.character.properties[item];
 							let key = item.replace("_", " ");
-							if (!["created", "edited", "homeworld", "url"].includes(item)) {
+							if (
+								![
+									"created",
+									"edited",
+									"homeworld",
+									"url",
+									"mass",
+									"hair_color",
+									"gravity",
+									"terrain",
+									"surface_water"
+								].includes(item)
+							) {
 								return (
 									<div key={index} className="col-2">
 										<h5>{key.charAt(0).toUpperCase() + key.slice(1)}</h5>

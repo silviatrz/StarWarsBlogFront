@@ -2,6 +2,11 @@
     General Styles
 */
 
+body {
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .card-group-starwars {
     overflow-x: auto;
@@ -9,6 +14,24 @@
    display: flex;
    flex-wrap: nowrap;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px yellow; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: yellow;
+    border-radius: 10px;
+  }
+
 
 
 

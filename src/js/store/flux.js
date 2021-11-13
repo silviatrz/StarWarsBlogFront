@@ -40,12 +40,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ characters: data.results }))
 					.catch(err => console.error(err));
 			},
-			loadSingleCharacter: url => {
+			loadSingleItem: url => {
 				fetch(url)
 					.then(res => res.json())
 					.then(data => {
 						console.log(data);
-						setStore({ character: data.result.properties });
+						setStore({ character: data.result });
 					})
 					.catch(err => console.error(err));
 			},
