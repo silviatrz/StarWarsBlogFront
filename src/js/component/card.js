@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes, { number } from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import starwars from "../../img/generic.png";
 
 const Card = props => {
 	const { store, actions } = useContext(Context);
@@ -10,10 +11,10 @@ const Card = props => {
 			{props.data
 				? props.data.map((value, index) => {
 						return (
-							<div className="card px-0 mx-4 col" key={index} style={{ minWidth: "350px" }}>
+							<div className="card px-0 mx-4 col rounded" key={index} style={{ minWidth: "350px" }}>
 								<img
 									className="card-img-top bg-dark"
-									src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1280px-Star_Wars_Logo.svg.png"
+									src={starwars}
 									alt="..."
 									style={{ height: "200px" }}
 								/>
