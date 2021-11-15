@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
@@ -18,7 +17,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 	//basename: la base de nuestra url
 	return (
-		<div>
+		<div className="h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
@@ -37,7 +36,12 @@ const Layout = () => {
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
-					<Footer />
+					<Footer
+						class={
+							"footer-md py-3 text-center bg-dark text-light w-100 " +
+							(window.location.pathname === "/item" ? "footer-bottom" : "mt-4")
+						}
+					/>
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

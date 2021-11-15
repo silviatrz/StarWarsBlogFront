@@ -21,11 +21,11 @@ const Card = props => {
 								<div className="card-body">
 									<h5 className="card-title">{value.name}</h5>
 									<div className="d-flex justify-content-between">
-										<Link to="/item" onClick={() => actions.loadSingleItem(value.url)}>
+										<Link to="/item" onClick={() => localStorage.setItem("url", value.url)}>
 											<span className="btn btn-outline-primary">Learn More!</span>
 										</Link>
-										<a href="#" className="btn btn-outline-warning">
-											<span>
+										<a className="btn btn-outline-warning">
+											<span onClick={() => actions.addFavorite(value.name)}>
 												<i className="far fa-heart" />
 											</span>
 										</a>

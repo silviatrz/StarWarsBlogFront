@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			id: "",
-			character: null
+			character: null,
+			favorites: ["(Empty)"]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -29,7 +30,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadPlanets: () => {
 				fetch("https://www.swapi.tech/api/planets/")
 					.then(res => res.json())
-					.then(data => setStore({ planets: data.results }))
+					.then(data =>
+						setStore({
+							planets: data.results
+						})
+					)
 					.catch(err => console.error(err));
 			},
 			loadCharacters: () => {
@@ -37,7 +42,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch("https://www.swapi.tech/api/people/")
 					.then(res => res.json())
-					.then(data => setStore({ characters: data.results }))
+					.then(data =>
+						setStore({
+							characters: data.results
+						})
+					)
 					.catch(err => console.error(err));
 			},
 			loadSingleItem: url => {
@@ -45,9 +54,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(data => {
 						console.log(data);
-						setStore({ character: data.result });
+						setStore({
+							character: data.result
+						});
 					})
 					.catch(err => console.error(err));
+			},
+			resetItem: () => {
+				setStore({
+					character: null
+				});
+				localStorage.removeItem("url");
+			},
+
+			addFavorite: name => {
+				const store = getStore();
+				if (store.favorites[0] == "(Empty)") {
+					let favs = [name];
+					setStore({
+						favorites: favs
+					});
+				} else {
+					let favs = !store.favorites.includes(name) ? [...store.favorites, name] : [...store.favorites];
+					setStore({
+						favorites: favs
+					});
+				}
+			},
+			deleteFavorite: i => {
+				const store = getStore();
+				let favs = [...store.favorites];
+				let faves = [];
+				for (let f in favs) {
+					if (f != i) {
+						faves.push(favs[f]);
+					}
+				}
+				if (faves.length == 0) {
+					faves.push("(Empty)");
+				}
+				setStore({
+					favorites: faves
+				});
 			},
 
 			changeColor: (index, color) => {
@@ -62,7 +110,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				//reset the global store
-				setStore({ demo: demo });
+				setStore({
+					demo: demo
+				});
 			}
 		}
 	};

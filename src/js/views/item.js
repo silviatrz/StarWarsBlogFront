@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import starwars from "../../img/generic.png";
 
 const Item = () => {
-	const { store } = useContext(Context);
+	const { store, actions } = useContext(Context);
+	useEffect(() => {
+		actions.loadSingleItem(localStorage.getItem("url"));
+	}, []);
 	return (
 		<div className="container-md">
 			{store.character ? (

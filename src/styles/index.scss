@@ -3,9 +3,10 @@
 */
 
 body {
-    background-image: url("../img/background.jpg");
+    background-color: black;
+    /*background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
 }
 
 .card-group-starwars {
@@ -32,10 +33,11 @@ body {
     border-radius: 10px;
   }
 
-  /*footer {
-      position: relative;
-      bottom: -175px;
-  }*/
+  .footer-bottom {
+     
+      position: absolute;
+      bottom: 0;
+  }
 
 
 
