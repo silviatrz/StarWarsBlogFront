@@ -6,7 +6,7 @@ export const Navbar = () => {
 	const { actions, store } = useContext(Context);
 	const [show, setShow] = useState(false);
 	return (
-		<nav className="navbar navbar-dark bg-dark mb-3 px-5">
+		<nav className="navbar sticky-top navbar-dark bg-dark mb-3 px-5">
 			<Link to="/" onClick={() => actions.resetItem()}>
 				<span className="navbar-brand mb-0 h1">
 					<img

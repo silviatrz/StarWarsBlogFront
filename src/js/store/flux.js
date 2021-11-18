@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			id: "",
-			character: null,
+			item: null,
 			favorites: ["(Empty)"]
 		},
 		actions: {
@@ -38,13 +38,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.error(err));
 			},
 			loadCharacters: () => {
-				const store = getStore();
-
 				fetch("https://www.swapi.tech/api/people/")
 					.then(res => res.json())
 					.then(data =>
 						setStore({
 							characters: data.results
+						})
+					)
+					.catch(err => console.error(err));
+			},
+			loadVehicles: () => {
+				fetch("https://www.swapi.tech/api/starships/")
+					.then(res => res.json())
+					.then(data =>
+						setStore({
+							vehicles: data.results
 						})
 					)
 					.catch(err => console.error(err));
@@ -55,14 +63,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log(data);
 						setStore({
-							character: data.result
+							item: data.result
 						});
 					})
 					.catch(err => console.error(err));
 			},
 			resetItem: () => {
 				setStore({
-					character: null
+					item: null
 				});
 				localStorage.removeItem("url");
 			},

@@ -11,6 +11,8 @@ export const Home = () => {
 			<Card data={store.characters} />
 			<h2 className="text-danger p-4">Planets</h2>
 			<Card data={store.planets} />
+			<h2 className="text-danger p-4">Vehicles</h2>
+			<Card data={store.vehicles} />
 		</div>
 	);
 };

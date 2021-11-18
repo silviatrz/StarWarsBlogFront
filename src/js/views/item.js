@@ -10,19 +10,19 @@ const Item = () => {
 	}, []);
 	return (
 		<div className="container-md">
-			{store.character ? (
+			{store.item ? (
 				<>
 					<div className="row">
 						<img className="col-4 offset-2" src={starwars} style={{ height: "300px" }} />
 						<div className="col-4 offset-2">
-							<h2 className="text-light">{store.character.properties.name}</h2>
-							<p className="text-light">{store.character.description}</p>
+							<h2 className="text-light">{store.item.properties.name}</h2>
+							<p className="text-light">{store.item.description}</p>
 						</div>
 					</div>
 					<hr className="text-danger" style={{ height: "3px" }} />
 					<div className="row text-danger">
-						{Object.keys(store.character.properties).map((item, index) => {
-							let value = store.character.properties[item];
+						{Object.keys(store.item.properties).map((item, index) => {
+							let value = store.item.properties[item];
 							let key = item.replace("_", " ");
 							if (
 								![
@@ -34,8 +34,16 @@ const Item = () => {
 									"hair_color",
 									"gravity",
 									"terrain",
-									"surface_water"
-								].includes(item)
+									"surface_water",
+									"MGLT",
+									"consumables",
+									"starship_class",
+									"cost_in_credits",
+									"cargo_capacity",
+									"max_atmosphering_speed",
+									"manufacturer"
+								].includes(item) &&
+								!Array.isArray(value)
 							) {
 								return (
 									<div key={index} className="col-2">
