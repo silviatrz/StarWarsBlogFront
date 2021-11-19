@@ -15,18 +15,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			id: "",
 			item: null,
-			favorites: ["(Empty)"]
+			favorites: [{ label: "(Empty)", url: "" }]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
 			loadPlanets: () => {
 				fetch("https://www.swapi.tech/api/planets/")
 					.then(res => res.json())
@@ -75,15 +67,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("url");
 			},
 
-			addFavorite: name => {
+			addFavorite: (name, url) => {
 				const store = getStore();
-				if (store.favorites[0] == "(Empty)") {
-					let favs = [name];
+				if (store.favorites[0]["label"] == "(Empty)") {
+					let favs = [{ label: name, url: url }];
 					setStore({
 						favorites: favs
 					});
 				} else {
-					let favs = !store.favorites.includes(name) ? [...store.favorites, name] : [...store.favorites];
+					let favs = !store.favorites.includes({ label: name, url: url })
+						? [...store.favorites, { label: name, url: url }]
+						: [...store.favorites];
 					setStore({
 						favorites: favs
 					});
@@ -99,27 +93,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 				if (faves.length == 0) {
-					faves.push("(Empty)");
+					faves.push({ label: "(Empty)", url: "" });
 				}
 				setStore({
 					favorites: faves
-				});
-			},
-
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({
-					demo: demo
 				});
 			}
 		}

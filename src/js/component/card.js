@@ -25,7 +25,7 @@ const Card = props => {
 											<span className="btn btn-outline-primary">Learn More!</span>
 										</Link>
 										<a className="btn btn-outline-warning">
-											<span onClick={() => actions.addFavorite(value.name)}>
+											<span onClick={() => actions.addFavorite(value.name, value.url)}>
 												<i className="far fa-heart" />
 											</span>
 										</a>
